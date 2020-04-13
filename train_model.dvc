@@ -1,0 +1,11 @@
+md5: 78a68cea765e1e7839e4aefa7476f703
+cmd: cp data model
+deps:
+- md5: 6137cde4893c59f76f005a8123d8e8e6
+  path: data
+outs:
+- md5: 6137cde4893c59f76f005a8123d8e8e6
+  path: model
+  cache: true
+  metric: false
+  persist: false
