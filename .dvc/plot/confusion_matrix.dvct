@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>dvc plot</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.10.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.8.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.5.1"></script>
+</head>
+<body>
+    <div id = "jguakfxm"></div>
+<script type = "text/javascript">
+    var spec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "data": {
+        "values": "<DVC_METRIC_DATA>"
+    },
+    "encoding": {
+        "color": {
+            "aggregate": "count",
+            "type": "quantitative"
+        },
+        "facet": {
+            "field": "rev",
+            "type": "nominal"
+        },
+        "x": {
+            "field": "predicted",
+            "sort": "ascending",
+            "type": "nominal"
+        },
+        "y": {
+            "field": "actual",
+            "sort": "ascending",
+            "type": "nominal"
+        }
+    },
+    "mark": "rect"
+};
+    vegaEmbed('#jguakfxm', spec);
+</script>
+</body>
+</html>
