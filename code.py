@@ -7,7 +7,9 @@ import random
 loss_over_time = []
 for i in range(1, 200, 10):
     x = i / 200 * (1 - random.random()*1/7)
-    r = 1 - x**(1/4)
+    r = 1 - x**(1/8)
+    if i == 1:
+        r = 1
     loss_over_time.append({"step": i, "loss": r})
 
 with open("loss_over_time.json", "w") as fobj:
@@ -16,7 +18,7 @@ with open("loss_over_time.json", "w") as fobj:
 
 # ROC
 x = np.linspace(0,1,100)
-y = np.power(x, 0.08)
+y = np.power(x, 0.75)
 
 
 roc = [{"fpr":round(x[i],5), "tpr":round(y[i], 5)} for i in range(len(x))]
@@ -42,4 +44,4 @@ def create_confusion_matrix(success_prob):
         writer.writeheader()
         writer.writerows(result)
 
-create_confusion_matrix(0.5)
+create_confusion_matrix(0.7)
