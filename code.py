@@ -48,11 +48,12 @@ def create_feature_importance(factor):
     num_features = 10
     result = {}
     for i in range(num_features):
-        result["f{}".format(str(i))]: factor*(random.random() - 0.5)
+        key = "f{}".format(str(i))
+        result[key]= round(factor*(random.random() - 0.5), 5)
 
     with open("feature_importance.csv", "w") as fobj:
         writer = csv.DictWriter(fobj, fieldnames=list(result.keys()))
         writer.writeheader()
-        writer.writerows(result)
+        writer.writerows([result])
 
 create_feature_importance(0.5)
