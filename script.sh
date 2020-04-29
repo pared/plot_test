@@ -17,7 +17,7 @@ dvc add data -q
 dvc run -d data -o model -f train_model.dvc "cp data model"
 
 cp $main/code.py code.py
-dvc run -q -d model -d code.py -M roc.csv -M loss_over_time.json -M confusion.csv -f evaluate.dvc "python code.py"
+dvc run -q -d model -d code.py -M roc.csv -M loss_over_time.json -M confusion.csv -M feature_importance.csv -f evaluate.dvc "python code.py"
 
 git add -A
 git commit -am "first iteration"

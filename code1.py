@@ -45,3 +45,16 @@ def create_confusion_matrix(success_prob):
         writer.writerows(result)
 
 create_confusion_matrix(0.7)
+
+def create_feature_importance(factor):
+    num_features = 10
+    result = {}
+    for i in range(num_features):
+        result["f{}".format(str(i))]: factor*(random.random() - 0.5)
+
+    with open("feature_importance.csv", "w") as fobj:
+        writer = csv.DictWriter(fobj, fieldnames=list(result.keys()))
+        writer.writeheader()
+        writer.writerows(result)
+
+create_feature_importance(0.6)
