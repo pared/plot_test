@@ -19,7 +19,7 @@ dvc run -d data -o model -n train_model "cp data model"
 cp $main/code.py code.py
 cp $main/params.yaml params.yaml
 
-dvc run -d model -d code.py --plots roc.csv --plots loss_over_time.json --plots confusion.csv -n evaluate --params roc_pow --params conf_success_prob --params loss_pow_denom python code.py 
+dvc run -d model -d code.py --plots roc.csv --plots logs.csv --plots confusion.csv -n evaluate --params roc_pow --params conf_success_prob --params loss_pow_denom python code.py 
 
 dvc plots modify confusion.csv --template confusion -x actual -y predicted
 dvc plots modify roc.csv -x fpr -y tpr --title "ROC curve" --y-label "True positive rate" --x-label "False postivie rate"
@@ -43,3 +43,4 @@ dvc repro -q evaluate
 
 git commit -am "third iteration"
 
+dvc plots diff HEAD^ --open
