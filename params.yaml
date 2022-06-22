@@ -1,0 +1,3 @@
+roc_pow: 0.08
+conf_success_prob: 0.5
+loss_pow_denom: 4 

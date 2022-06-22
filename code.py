@@ -2,12 +2,20 @@ import numpy as np
 import json
 import csv
 import random
+import yaml
+
+def load_params():
+    with open('params.yaml', 'r') as fd:
+        return yaml.safe_load(fd)
+
+params = load_params()
 
 
 loss_over_time = []
 for i in range(1, 200, 10):
     x = i / 200 * (1 - random.random()*1/7)
-    r = 1 - x**(1/4)
+    r = 1 - x**(1/params['loss_pow_denom'])
+    r = round(r, 2)
     loss_over_time.append({"step": i, "loss": r})
 
 with open("loss_over_time.json", "w") as fobj:
@@ -16,7 +24,7 @@ with open("loss_over_time.json", "w") as fobj:
 
 # ROC
 x = np.linspace(0,1,100)
-y = np.power(x, 0.08)
+y = np.power(x, params['roc_pow'])
 
 
 roc = [{"fpr":round(x[i],5), "tpr":round(y[i], 5)} for i in range(len(x))]
@@ -42,7 +50,7 @@ def create_confusion_matrix(success_prob):
         writer.writeheader()
         writer.writerows(result)
 
-create_confusion_matrix(0.5)
+create_confusion_matrix(params['conf_success_prob'])
 
 def create_feature_importance(factor):
     num_features = 10
