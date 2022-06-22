@@ -11,9 +11,10 @@ def load_params():
 params = load_params()
 
 
+num_datapoints = 200
 loss_over_time = []
-for i in range(1, 200, 10):
-    x = i / 200 * (1 - random.random()*1/7)
+for i in range(1, num_datapoints, 10):
+    x = i / num_datapoints * (1 - random.random()*1/7)
     r = 1 - x**(1/params['loss_pow_denom'])
     r = round(r, 2)
     loss_over_time.append({"step": i, "loss": r})
